@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pervaiz Ahmed Brohi | Backend AI & Machine Learning Engineer</title>
+    <!-- Google Fonts & Font Awesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-dark: #0b0f19;
+            --bg-card: #111827;
+            --bg-card-hover: #1f2937;
+            --accent-blue: #38bdf8;
+            --accent-green: #10b981;
+            --accent-purple: #8b5cf6;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --glow-blue: rgba(56, 189, 248, 0.15);
+            --glow-green: rgba(16, 185, 129, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-blue);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        .btn-nav {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            color: #fff;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 8rem 5% 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        .badge-ranking {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            width: fit-content;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 650px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: #0b0f19;
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 1.8rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-blue);
+            color: var(--accent-blue);
+            transform: translateY(-3px);
+        }
+
+        /* Stats Banner */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 8px 25px var(--glow-blue);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--accent-blue);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Sections General */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+        }
+
+        /* Recommendation Banner */
+        .recommendation-card {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.9), rgba(31, 41, 55, 0.6));
+            border: 1px solid var(--accent-green);
+            border-radius: 16px;
+            padding: 2.5rem;
+            position: relative;
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+
+        .recommendation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 150px;
+            height: 150px;
+            background: var(--glow-green);
+            filter: blur(50px);
+            border-radius: 50%;
+        }
+
+        .rec-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .rec-signer {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--accent-green);
+        }
+
+        .rec-body {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .verification-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 1.8rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px var(--glow-blue);
+        }
+
+        .project-status {
+            align-self: flex-start;
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--accent-blue);
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-family: 'Fira Code', monospace;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-category {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.8rem;
+            border-radius: 12px;
+        }
+
+        .skill-category h3 {
+            color: var(--accent-blue);
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            color: var(--text-muted);
+            padding: 0.4rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .skill-item i {
+            color: var(--accent-green);
+            font-size: 0.8rem;
+        }
+
+        /* Experience Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 60px;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 2px solid var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-blue);
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 12px;
+        }
+
+        .timeline-role {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .timeline-company {
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-date {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #070a11;
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 5%;
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links a {
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-blue);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo"><i class="fa-solid fa-code"></i> Pervaiz<span>.ai</span></div>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Approved Projects</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="mailto:pervaizahmedbrohi786@gmail.com" class="btn-nav">Hire Me</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="badge-ranking">
+            <i class="fa-solid fa-trophy"></i> Global Rank #78 out of 9,704 Candidates (Top 1%)
+        </div>
+        <h1>Hi, I'm <span>Pervaiz Ahmed Brohi</span> 👋</h1>
+        <p>Backend AI & Machine Learning Engineer specializing in building scalable REST APIs, voice transcription infrastructure, and enterprise AI automation tools.</p>
+        
+        <div class="hero-btns">
+            <a href="#projects" class="btn-primary"><i class="fa-solid fa-rocket"></i> View Approved Projects</a>
+            <a href="https://linkedin.com" target="_blank" class="btn-secondary"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+            <a href="https://github.com/pervaiz123" target="_blank" class="btn-secondary"><i class="fa-brands fa-github"></i> GitHub</a>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">#78</div>
+                <div class="stat-label">Global Leaderboard Rank</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6/6</div>
+                <div class="stat-label">FlyRank Approved Capstones</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">45+</div>
+                <div class="stat-label">Verified AI Engineering Modules</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">20</div>
+                <div class="stat-label">Anthropic Academy Certifications</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recommendation Banner -->
+    <section id="about">
+        <div class="recommendation-card">
+            <div class="rec-header">
+                <div>
+                    <span class="project-status"><i class="fa-solid fa-certificate"></i> CEO Endorsed</span>
+                    <h3 style="font-size: 1.5rem; margin-top: 0.5rem;">Official Letter of Recommendation</h3>
+                </div>
+                <div class="rec-signer">Alen Malkoc — Founder & CEO, FlyRank.ai</div>
+            </div>
+            <p class="rec-body">
+                "Pervaiz successfully completed the FlyRank AI Internship Program in the role of Back-End AI Engineering Intern. During the program, Pervaiz completed 45 practical assignments applying curriculum in API contracts, Task design, Retrieval/Grounding, and Operations... Based on this verified completion record, I recommend Pervaiz for opportunities aligned with back-end engineering and applied AI systems."
+            </p>
+            <div class="verification-badge">
+                <i class="fa-solid fa-shield-halved" style="color: var(--accent-green);"></i> Verified Record ID: FR-D10-097A0-894C5
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2 class="section-title">Verified Capstones & Projects</h2>
+        <p class="section-subtitle">Production-ready AI backends and machine learning applications approved by industry reviewers.</p>
+
+        <div class="projects-grid">
+            
+            <!-- Project 1 -->
+            <div class="project-card">
+                <div>
+                    <span class="project-status"><i class="fa-solid fa-check"></i> FlyRank Approved (Culminating)</span>
+                    <h3 class="project-title">LLM Usage Metering & Billing Service</h3>
+                    <p class="project-desc">Architected a backend system to track, meter, and bill Large Language Model API consumption with real-time usage metrics and database persistence.</p>
+                    <div class="tech-tags">
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">SQLite</span>
+                        <span class="tag">SQLAlchemy</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="project-card">
+                <div>
+                    <span class="project-status"><i class="fa-solid fa-check"></i> FlyRank Approved</span>
+                    <h3 class="project-title">Your 10x Solution (Lead Intelligence Hub)</h3>
+                    <p class="project-desc">API-first automated lead intelligence engine featuring JWT authentication, web scraping pipelines, LLM-based lead scoring, and automated PDF reporting.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">Web Scraping</span>
+                        <span class="tag">LLM API</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="project-card">
+                <div>
+                    <span class="project-status" style="background: rgba(56, 189, 248, 0.15); color: var(--accent-blue);"><i class="fa-solid fa-bolt"></i> Featured Project</span>
+                    <h3 class="project-title">VoicePulse AI — Real-time Speech Engine</h3>
+                    <p class="project-desc">Streaming Speech-to-Text integration utilizing AssemblyAI WebSocket/HTTP endpoints, custom async request loops, and real-time audio transcription handling.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">AssemblyAI</span>
+                        <span class="tag">WebSockets</span>
+                        <span class="tag">Asyncio</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="project-card">
+                <div>
+                    <span class="project-status"><i class="fa-solid fa-check"></i> FlyRank Approved</span>
+                    <h3 class="project-title">Image Relevance & Auto-Tagging</h3>
+                    <p class="project-desc">Computer vision and classifier pipeline that automatically tags, indexes, and evaluates relevance scores for large visual content repositories.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Scikit-Learn</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Pandas</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="project-card">
+                <div>
+                    <span class="project-status"><i class="fa-solid fa-check"></i> FlyRank Approved</span>
+                    <h3 class="project-title">Embeddable Lead-Capture Platform</h3>
+                    <p class="project-desc">Lightweight data ingestion micro-service for embedding customizable lead capture widgets into third-party web platforms with secure API routing.</p>
+                    <div class="tech-tags">
+                        <span class="tag">FastAPI</span>
+                        <span class="tag">REST API</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="project-card">
+                <div>
+                    <span class="project-status"><i class="fa-solid fa-check"></i> FlyRank Approved</span>
+                    <h3 class="project-title">General AI Fluency Impact Framework</h3>
+                    <p class="project-desc">Evaluations and prompting framework benchmarked for real-world operational workflows and applied LLM response optimization.</p>
+                    <div class="tech-tags">
+                        <span class="tag">Prompt Engineering</span>
+                        <span class="tag">LLM Benchmarking</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2 class="section-title">Technical Expertise</h2>
+        <p class="section-subtitle">Core stack and tooling used in building backend systems and ML pipelines.</p>
+
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-server"></i> Backend & Web APIs</h3>
+                <ul class="skill-list">
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Python 3.13 / FastAPI</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Uvicorn / Asyncio</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> REST API Architecture</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> SQLite / SQLAlchemy ORM</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Web Scraping & Auth</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-brain"></i> Machine Learning & AI</h3>
+                <ul class="skill-list">
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Scikit-Learn / LightGBM</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Pandas / NumPy</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Model Evaluation & Metrics</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> AssemblyAI Speech-to-Text</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> LLM Metering & Grounding</li>
+                </ul>
+            </div>
+
+            <div class="skill-category">
+                <h3><i class="fa-solid fa-wrench"></i> Tools & Engineering</h3>
+                <ul class="skill-list">
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Git / GitHub Workflows</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> VS Code / Linux CLI</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Data Visualization (Seaborn)</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Exception Handling & Logging</li>
+                    <li class="skill-item"><i class="fa-solid fa-check"></i> Agile & Remote Ops</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <p class="section-subtitle">Track record in software engineering and operations management.</p>
+
+        <div class="timeline">
+            
+            <div class="timeline-item">
+                <div class="timeline-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-role">Back-End AI Engineering Intern</div>
+                    <div class="timeline-company">FlyRank.ai | Wyoming, USA (Remote)</div>
+                    <div class="timeline-date">July 2026 – September 2026</div>
+                    <p style="color: var(--text-muted);">Ranked #78 globally out of 9,704 candidates. Built and deployed 6 approved capstone projects in FastAPI, LLM metering, and web data scraping. Earned official CEO recommendation letter.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-icon"><i class="fa-solid fa-robot"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-role">Artificial Intelligence Intern</div>
+                    <div class="timeline-company">CodeAlpha</div>
+                    <div class="timeline-date">2024</div>
+                    <p style="color: var(--text-muted);">Engineered Python algorithms and mini machine learning workflows. Conducted exploratory data analysis (EDA) and built decision logic tools.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <div class="timeline-content">
+                    <div class="timeline-role">E-commerce & Operations Manager</div>
+                    <div class="timeline-company">Express Publishing LLC | USA</div>
+                    <div class="timeline-date">Jan 2021 – Sep 2024</div>
+                    <p style="color: var(--text-muted);">Scaled monthly revenue from $0 to $500,000+ using automated product research algorithms and sales tracking workflows.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Contact Footer -->
+    <footer id="contact">
+        <h2 style="font-size: 2rem; margin-bottom: 1rem;">Let's Build Something Great Together</h2>
+        <p style="color: var(--text-muted); margin-bottom: 2rem;">I am actively open to Junior Machine Learning & Backend AI Engineering roles.</p>
+        
+        <div class="social-links">
+            <a href="mailto:pervaizahmedbrohi786@gmail.com" title="Email"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://github.com/pervaiz123" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="tel:+923052641492" title="Phone"><i class="fa-solid fa-phone"></i></a>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.85rem;">&copy; 2026 Pervaiz Ahmed Brohi. Built & Hosted on GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
